@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.chess.databinding.FragmentTimerBinding
 
@@ -24,6 +25,7 @@ import com.example.chess.databinding.FragmentTimerBinding
 class Timer : Fragment() {
 
     private lateinit var binding: FragmentTimerBinding
+    private val cvm: ChessViewModel by activityViewModels()
 
     private lateinit var player1Timer: TextView
     private lateinit var player2Timer: TextView

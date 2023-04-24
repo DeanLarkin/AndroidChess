@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.chess.databinding.FragmentHomeBinding
 
@@ -23,6 +24,7 @@ class Home : Fragment() {
 
     private lateinit var binding:FragmentHomeBinding
     private lateinit var play:Button
+    private val cvm: ChessViewModel by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
