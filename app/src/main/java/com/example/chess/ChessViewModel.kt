@@ -13,6 +13,7 @@ class ChessViewModel : ViewModel() {
     private var theme: String? = null
     private var moveCount1: Int = 0
     private var moveCount2: Int = 0
+    private var player: Int = 1
     private var moveList1: MutableList<String?> = mutableListOf<String?>()
     private var moveList2: MutableList<String?> = mutableListOf<String?>()
     var min: Int = 0
@@ -68,7 +69,7 @@ class ChessViewModel : ViewModel() {
         return theme
     }
 
-    fun addMove(player: Int, move: String) {
+    fun addMove(move: String) {
         if (player == 1){
             moveList1.add(move)
         } else {
@@ -76,7 +77,7 @@ class ChessViewModel : ViewModel() {
         }
     }
 
-    fun setMoveCount(player: Int) {
+    fun setMoveCount() {
         if (player == 1){
             moveCount1++
         } else {
@@ -84,7 +85,7 @@ class ChessViewModel : ViewModel() {
         }
     }
 
-    fun getMoveCount(player: Int) : Int{
+    fun getMoveCount() : Int{
         if (player == 1){
             return moveCount1
         } else {
