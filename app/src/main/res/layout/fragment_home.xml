@@ -12,19 +12,20 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/player2"
-        android:layout_width="155dp"
-        android:layout_height="39dp"
+        android:layout_width="235dp"
+        android:layout_height="61dp"
         android:hint="Player 2 Name:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.427" />
+        app:layout_constraintVertical_bias="0.422" />
 
     <Spinner
         android:id="@+id/timeSpinner"
-        android:layout_width="203dp"
-        android:layout_height="37dp"
+        android:layout_width="229dp"
+        android:layout_height="50dp"
+        android:contentDescription="Time"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
@@ -34,14 +35,15 @@
 
     <Switch
         android:id="@+id/soundSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="151dp"
+        android:layout_height="51dp"
+        android:contentDescription="Sound"
         android:text="Sound"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.882" />
+        app:layout_constraintVertical_bias="0.92" />
 
     <TextView
         android:id="@+id/textView"
@@ -50,10 +52,9 @@
         android:text="Theme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.529" />
+        app:layout_constraintVertical_bias="0.521" />
 
     <TextView
         android:id="@+id/timeText"
@@ -68,8 +69,9 @@
 
     <Spinner
         android:id="@+id/themeSpinner"
-        android:layout_width="203dp"
-        android:layout_height="37dp"
+        android:layout_width="236dp"
+        android:layout_height="58dp"
+        android:contentDescription="Theme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
@@ -89,25 +91,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.053" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="10dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="283dp">
-
-    </com.google.android.material.textfield.TextInputLayout>
-
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/player1"
-        android:layout_width="155dp"
-        android:layout_height="39dp"
+        android:layout_width="236dp"
+        android:layout_height="67dp"
         android:hint="Player 1 Name:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.291" />
+        app:layout_constraintVertical_bias="0.289" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
