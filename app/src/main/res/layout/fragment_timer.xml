@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="1dp"
-        android:background="#00000"
+        android:background="#000000"
 
         android:contentDescription="top half of screen"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="1dp"
-        android:background="#00000"
+        android:background="#000000"
         android:contentDescription="Bottom half of screen"
         android:elevation="2dp"
         android:textColor="#000000"
@@ -51,7 +51,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <TextView
-        android:id="@+id/moveCountBottom2"
+        android:id="@+id/moveCountTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Move Count:"
@@ -109,7 +109,7 @@
         app:layout_constraintVertical_bias="0.65" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/pauseButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -120,7 +120,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/restartButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="Restart"
