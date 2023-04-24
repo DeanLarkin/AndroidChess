@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.example.chess.databinding.FragmentTimerBinding
 
@@ -63,19 +64,30 @@ class Timer : Fragment() {
 
 
 
-        settings.setOnClickListener{
+        settings.setOnClickListener {
             view?.findNavController()?.navigate(R.id.action_timer_to_home2)
         }
         trackMove.setOnClickListener {
             view?.findNavController()?.navigate(R.id.action_timer_to_moveLayout)
         }
 
-
+        cvm.countLive.observe(viewLifecycleOwner, Observer {
+            val count = 59 - cvm.count!!  // subtract count from 59 to get the countdown value
+            val min = cvm.min
+            if (count < 10 && min < 10) {
+                player1Timer?.text = "0$min:0$count"  // format the countdown value with leading zeros if necessary
+            } else if (count < 0 && min >= 10) {
+                player1Timer?.text = "$min:00"  // if count goes below 0, display 00 for seconds
+            } else if (count >= 10 && min >= 10) {
+                player1Timer?.text = "$min:$count"
+            } else {
+                player1Timer?.text = "0$min:$count"
+            }
+        })
 
 
         // Inflate the layout for this fragment
         return binding.root
     }
-
 
 }
