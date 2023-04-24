@@ -28,24 +28,21 @@ class MoveLayout : Fragment() {
         var pieceName: String = ""
         var positionLetter: String = ""
         var positionNumber: String = ""
+        var moveString: String = ""
 
-        binding.queen.setOnClickListener{
-            pieceName = "Q"
-        }
-        binding.king.setOnClickListener{
-            pieceName = "K"
-        }
-        binding.knight.setOnClickListener {
-            pieceName = "N"
-        }
-        binding.bishop.setOnClickListener {
-            pieceName = "B"
-        }
-        binding.rook.setOnClickListener {
-            pieceName = "R"
-        }
-        binding.pawn.setOnClickListener {
-            pieceName = "P"
+        binding.submitButton.setOnClickListener{
+
+            pieceName = binding.piece.selectedItemId.toString()
+            positionLetter = binding.letter.selectedItemId.toString()
+            positionNumber = binding.number.selectedItemId.toString()
+            if (binding.taken.isChecked){
+                moveString = pieceName + "x" + positionLetter + positionNumber
+            } else {
+                moveString = pieceName + positionLetter + positionNumber
+            }
+
+            cvm.addMove(moveString)
+
         }
 
         return binding.root

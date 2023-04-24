@@ -1,5 +1,7 @@
 <resources>
+
     <string name="app_name">Chess</string>
+
     <string-array name="Times">
         <item>1 Minute</item>
         <item>3 Minutes</item>
@@ -13,6 +15,37 @@
         <item>Cavalier</item>
         <item>Duke Dog</item>
         <item>Patriots</item>
+    </string-array>
+
+    <string-array name="Pieces">
+        <item>Queen</item>
+        <item>King</item>
+        <item>Knight</item>
+        <item>Bishop</item>
+        <item>Rook</item>
+        <item>Pawn</item>
+    </string-array>
+
+    <string-array name="Letters">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+        <item>F</item>
+        <item>G</item>
+        <item>H</item>
+    </string-array>
+
+    <string-array name="Numbers">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
     </string-array>
 
 </resources>
