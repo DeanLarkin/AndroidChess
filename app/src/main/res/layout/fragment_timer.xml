@@ -113,6 +113,7 @@
         android:layout_marginStart="16dp"
         android:contentDescription="Pause"
         android:src="@android:drawable/ic_media_pause"
+        android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
