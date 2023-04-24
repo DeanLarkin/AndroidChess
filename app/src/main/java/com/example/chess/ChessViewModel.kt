@@ -43,4 +43,12 @@ class ChessViewModel : ViewModel() {
         }
     }
 
+    fun getMoveCount(player: Int) : Int{
+        if (player == 1){
+            return moveCount1
+        } else {
+            return moveCount2
+        }
+    }
+
 }
