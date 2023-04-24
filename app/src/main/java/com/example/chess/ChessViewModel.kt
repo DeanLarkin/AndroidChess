@@ -6,6 +6,7 @@ class ChessViewModel : ViewModel() {
 
     private var timeSetting: Int? = null
     private var theme: String? = null
+    private var turn: Int = 0 //0 if player 1, 1 if player 2
     private var moveCount1: Int = 0
     private var moveCount2: Int = 0
     private var moveList1: MutableList<String?> = mutableListOf<String?>()
