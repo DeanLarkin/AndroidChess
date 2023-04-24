@@ -29,7 +29,24 @@ class MoveLayout : Fragment() {
         var positionLetter: String = ""
         var positionNumber: String = ""
 
-
+        binding.queen.setOnClickListener{
+            pieceName = "Q"
+        }
+        binding.king.setOnClickListener{
+            pieceName = "K"
+        }
+        binding.knight.setOnClickListener {
+            pieceName = "N"
+        }
+        binding.bishop.setOnClickListener {
+            pieceName = "B"
+        }
+        binding.rook.setOnClickListener {
+            pieceName = "R"
+        }
+        binding.pawn.setOnClickListener {
+            pieceName = "P"
+        }
 
         return binding.root
     }
