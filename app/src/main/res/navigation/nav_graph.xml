@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/home2">
+
+    <fragment
+        android:id="@+id/timer"
+        android:name="com.example.chess.Timer"
+        android:label="fragment_timer"
+        tools:layout="@layout/fragment_timer" >
+        <action
+            android:id="@+id/action_timer_to_home2"
+            app:destination="@id/home2" />
+        <action
+            android:id="@+id/action_timer_to_moveLayout"
+            app:destination="@id/moveLayout" />
+    </fragment>
+    <fragment
+        android:id="@+id/home2"
+        android:name="com.example.chess.Home"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home2_to_timer"
+            app:destination="@id/timer" />
+    </fragment>
+    <fragment
+        android:id="@+id/moveLayout"
+        android:name="com.example.chess.MoveLayout"
+        android:label="fragment_move_layout"
+        tools:layout="@layout/fragment_move_layout" >
+        <action
+            android:id="@+id/action_moveLayout_to_timer"
+            app:destination="@id/timer" />
+    </fragment>
+</navigation>
