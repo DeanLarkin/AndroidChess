@@ -46,6 +46,8 @@ class Timer : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        binding = FragmentTimerBinding.inflate(layoutInflater, container, false)
+
         player1Timer = binding.timerBottom
         player2Timer = binding.timerTop
 
@@ -70,7 +72,7 @@ class Timer : Fragment() {
 
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_timer, container, false)
+        return binding.root
     }
 
 
