@@ -25,7 +25,9 @@ class ChessViewModel : ViewModel() {
     private val _countLive = MutableLiveData<Int>(0)
     var countLive: LiveData<Int> = _countLive
 
-
+    init{
+        timerCounter()
+    }
     fun setTime(newTime: Int) {
         timeSetting = newTime
     }
