@@ -49,8 +49,6 @@ class Home : Fragment() {
             cvm.count = timeSpinner.selectedItemPosition
         }
 
-
-
         // Inflate the layout for this fragment
         return binding.root
     }
