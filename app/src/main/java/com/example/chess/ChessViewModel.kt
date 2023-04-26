@@ -18,8 +18,8 @@ class ChessViewModel : ViewModel() {
     private var moveList1: MutableList<String?> = mutableListOf<String?>()
     private var moveList2: MutableList<String?> = mutableListOf<String?>()
     var min: Int = 0
-    var paused: Boolean = true
-    var count: Int? = null
+    var paused: Boolean = false
+    var count: Int? = 90
     private val _minLive = MutableLiveData<Int>(0)
     var minLive: LiveData<Int> = _minLive
     private val _countLive = MutableLiveData<Int>(0)
@@ -38,11 +38,13 @@ class ChessViewModel : ViewModel() {
 
     fun timerCounter() {
         Timer().scheduleAtFixedRate(timerTask {
+            Log.e("YYYYYYYY", count.toString())
+            println(paused)
             if (!paused) {
                 if (count!! <= 0) {  // check if count is less than or equal to 0
                     Log.e("Count Check <= 0", count.toString())
                     count = 59  // reset count to 59
-                    if (min > 0) {  // decrement min only if it is greater than 0
+                    if (min > 0) {  // decrement min only if it is greater than 0  make sure it is running.
                         min--
                         _minLive.postValue(min)
                     }

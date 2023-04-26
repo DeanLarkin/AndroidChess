@@ -76,7 +76,7 @@
         app:layout_constraintHorizontal_bias="0.102"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.396" />
+        app:layout_constraintVertical_bias="0.366" />
 
     <TextView
         android:id="@+id/timerBottom"
@@ -126,10 +126,10 @@
         android:text="Move Count:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintHorizontal_bias="0.102"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.598" />
+        app:layout_constraintVertical_bias="0.634" />
 
     <Button
         android:id="@+id/moveButton"
