@@ -39,6 +39,7 @@ class MoveLayout : Fragment() {
             } else {
                 moveString = pieceName + positionLetter + positionNumber
             }
+            cvm.post(moveString)
 
             cvm.addMove(moveString)
 

@@ -4,6 +4,11 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.work.Data
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import java.util.*
 import java.util.Timer
 import kotlin.concurrent.timerTask
 
@@ -36,6 +41,17 @@ class ChessViewModel : ViewModel() {
         return timeSetting
     }
 
+    fun post(text: String){
+        val inputData = Data.Builder().putString("username", MainActivity.USERNAME)
+            .putString("date", Calendar.getInstance().time.toString())
+            .putString("userID", MainActivity.USER_ID)
+            .putString("event", text).build()
+
+        val uploadWorkRequest = OneTimeWorkRequestBuilder<UploadWorker>()
+        val setUploadWorkRequestWithInputData = uploadWorkRequest.setInputData(inputData).build()
+        WorkManager.getInstance().beginUniqueWork(text, ExistingWorkPolicy.REPLACE, setUploadWorkRequestWithInputData)
+            .enqueue()
+    }
     fun timerCounter() {
         Timer().scheduleAtFixedRate(timerTask {
             Log.e("YYYYYYYY", count.toString())

@@ -85,11 +85,15 @@ class Timer : Fragment() {
 
 // Set up the click listener for the pause button
         pause.setOnClickListener{
-            // Set the isPaused flag to true
-            isPaused = true
+            // Toggle the isPaused flag between true and false
+            cvm.post("Pause/play")
+            isPaused = !isPaused
+            // Update the text of the pause button based on the current state of isPaused
+            pause.text = if (isPaused) "Pause" else "Play"
             // Update the countLive value to trigger the observer
-            //cvm.countLive.value = cvm.countLive.value
+           // cvm.countLive.value = cvm.countLive.value
         }
+
         trackMove.setOnClickListener {
 
             view?.findNavController()?.navigate(R.id.action_timer_to_moveLayout)
