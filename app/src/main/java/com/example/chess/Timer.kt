@@ -14,15 +14,6 @@ import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.example.chess.databinding.FragmentTimerBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Timer.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Timer : Fragment() {
 
     private lateinit var binding: FragmentTimerBinding
@@ -37,7 +28,7 @@ class Timer : Fragment() {
     private lateinit var pause: Button
     private lateinit var settings:Button
     private lateinit var trackMove:Button
-    private lateinit var restart:ImageButton
+    private lateinit var restart: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,8 +49,8 @@ class Timer : Fragment() {
         player2Move = binding.moveCountTop
 
         pause = binding.pauseButton
-        //restart = binding.restartButton
-        settings = binding.settingButton2
+        restart = binding.restartButton
+        settings = binding.settingButton
         trackMove = binding.moveButton
 
 
