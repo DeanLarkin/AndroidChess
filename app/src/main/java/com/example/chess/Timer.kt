@@ -210,7 +210,7 @@ class Timer : Fragment() {
             player2Timer.setTextColor(Color.BLACK)
             buttonTop.setBackgroundColor(Color.GRAY)
             buttonBottom.setBackgroundColor(Color.GRAY)
-        }
+        }//g
 
     }
 

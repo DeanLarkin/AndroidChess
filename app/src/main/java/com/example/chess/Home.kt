@@ -22,7 +22,7 @@ class Home : Fragment() {
         super.onCreate(savedInstanceState)
 
     }
-
+//g
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
