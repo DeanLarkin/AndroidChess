@@ -13,7 +13,12 @@ import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import androidx.work.Data
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.example.chess.databinding.FragmentTimerBinding
+import java.util.*
 
 class Timer : Fragment() {
 
@@ -63,46 +68,52 @@ class Timer : Fragment() {
         createTheme()
 
         settings.setOnClickListener {
+            cvm.post("Navigated to settings fragment")
             view?.findNavController()?.navigate(R.id.action_timer_to_home2)
         }
-        pause.setOnClickListener{
 
-            cvm.countLive.observe(viewLifecycleOwner, Observer {
-                if (cvm.count!! >= 0 && cvm.min >= 0) {
-                    if (cvm.count!! < 10 && cvm.min < 10) {
-                        player1Timer?.text = "0${cvm.min}:0${cvm.count}"
-                    } else if (cvm.count!! >= 10 && cvm.min < 10) {
-                        player1Timer?.text = "0${cvm.min}:${cvm.count}"
-                    } else if (cvm.count!! < 10 && cvm.min >= 10) {
-                        player1Timer?.text = "${cvm.min}:0${cvm.count}"
+        // Initialize a flag to keep track of whether the pause button is clicked
+        var isPaused = false
+
+// Set up the observer for countLive inside onCreateView or onViewCreated
+        cvm.countLive.observe(viewLifecycleOwner, Observer { count ->
+            // Check if the pause button is clicked
+            if (isPaused) {
+                if (count >= 0 && cvm.min >= 0) {
+                    if (count < 10 && cvm.min < 10) {
+                        player1Timer?.text = "0${cvm.min}:0${count}"
+                    } else if (count >= 10 && cvm.min < 10) {
+                        player1Timer?.text = "0${cvm.min}:${count}"
+                    } else if (count < 10 && cvm.min >= 10) {
+                        player1Timer?.text = "${cvm.min}:0${count}"
                     } else {
-                        player1Timer?.text = "${cvm.min}:${cvm.count}"
+                        player1Timer?.text = "${cvm.min}:${count}"
                     }
                 } else {
                     // countdown finished, do something
                     player1Timer?.text = "00:00"
                 }
-            })
+            }
+        })
 
+// Set up the click listener for the pause button
+        pause.setOnClickListener{
+            // Toggle the isPaused flag between true and false
 
-//            cvm.countLive.observe(viewLifecycleOwner, Observer {
-//                val count = 59 - cvm.count!!  // subtract count from 59 to get the countdown value
-//                val min = cvm.min
-//                if (count < 10 && min < 10) {
-//                    player1Timer?.text = "0$min:0$count"  // format the countdown value with leading zeros if necessary
-//                    println("0$min:0$count")
-//                } else if (count < 0 && min >= 10) {
-//                    player1Timer?.text = "$min:00"  // if count goes below 0, display 00 for seconds
-//                } else if (count >= 10 && min >= 10) {
-//                    player1Timer?.text = "$min:$count"
-//                } else {
-//                    player1Timer?.text = "0$min:$count"
-//                }
-//            })
+            isPaused = !isPaused
+            // Update the text of the pause button based on the current state of isPaused
+            pause.text = if (isPaused) "Pause"  else "Play"
+            if (isPaused)
+                cvm.post("Paused timer")
+            else
+                cvm.post("Resumed timer")
 
+            // Update the countLive value to trigger the observer
+           // cvm.countLive.value = cvm.countLive.value
         }
 
         trackMove.setOnClickListener {
+            cvm.post("Navigated to Tracking move fragment")
 
             view?.findNavController()?.navigate(R.id.action_timer_to_moveLayout)
         }
