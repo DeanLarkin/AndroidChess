@@ -9,7 +9,7 @@ import retrofit2.http.POST
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
+//g
 interface TrackerRetrofitService{
     @POST(value = MainActivity.ROUTE)
     fun postLog (@Body json: JSONObject): Call<String>

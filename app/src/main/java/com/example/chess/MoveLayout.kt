@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.example.chess.databinding.FragmentMoveLayoutBinding
-
+//g
 class MoveLayout : Fragment() {
 
     private lateinit var binding: FragmentMoveLayoutBinding

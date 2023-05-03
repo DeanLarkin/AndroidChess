@@ -29,7 +29,7 @@ class ChessViewModel : ViewModel() {
     var minLive: LiveData<Int> = _minLive
     private val _countLive = MutableLiveData<Int>(0)
     var countLive: LiveData<Int> = _countLive
-
+//g
 //    init{
 //        timerCounter()
 //    }
