@@ -92,6 +92,7 @@ class Timer : Fragment() {
 // Set up the click listener for the pause button
         pause.setOnClickListener{
             // Toggle the isPaused flag between true and false
+            cvm.timerCounter()
 
             isPaused = !isPaused
             // Update the text of the pause button based on the current state of isPaused
