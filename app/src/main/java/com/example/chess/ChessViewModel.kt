@@ -19,20 +19,25 @@ class ChessViewModel : ViewModel() {
     private var turn: Int = 0 //0 if player 1, 1 if player 2
     private var moveCount1: Int = 0
     private var moveCount2: Int = 0
-    private var player: Int = 1
+    var player: Int = 1
     private var moveList1: MutableList<String?> = mutableListOf<String?>()
     private var moveList2: MutableList<String?> = mutableListOf<String?>()
-    var min: Int = 0
+    var min1: Int = 0
+    var min2: Int = 0
     var paused: Boolean = false
-    var count: Int? = 90
-    private val _minLive = MutableLiveData<Int>(0)
-    var minLive: LiveData<Int> = _minLive
-    private val _countLive = MutableLiveData<Int>(0)
-    var countLive: LiveData<Int> = _countLive
+    var paused1: Boolean = false
+    var paused2: Boolean = true
+    var count1: Int? = 90
+    var count2: Int? = 90
+    private val _minLive1 = MutableLiveData<Int>(0)
+    private val _minLive2 = MutableLiveData<Int>(0)
+    var minLive1: LiveData<Int> = _minLive1
+    var minLive2: LiveData<Int> = _minLive2
+    private val _countLive1 = MutableLiveData<Int>(0)
+    private val _countLive2 = MutableLiveData<Int>(0)
+    var countLive1: LiveData<Int> = _countLive1
+    var countLive2: LiveData<Int> = _countLive2
 
-//    init{
-//        timerCounter()
-//    }
     fun setTime(newTime: Int) {
         timeSetting = newTime
     }
@@ -52,34 +57,67 @@ class ChessViewModel : ViewModel() {
         WorkManager.getInstance().beginUniqueWork(text, ExistingWorkPolicy.REPLACE, setUploadWorkRequestWithInputData)
             .enqueue()
     }
-    fun timerCounter() {
+
+    fun timerCounter1() {
         Timer().scheduleAtFixedRate(timerTask {
-            Log.e("YYYYYYYY", count.toString())
-            println(paused)
-            if (!paused) {
-                if (count!! <= 0) {  // check if count is less than or equal to 0
-                    Log.e("Count Check <= 0", count.toString())
-                    count = 59  // reset count to 59
-                    if (min > 0) {  // decrement min only if it is greater than 0  make sure it is running.
-                        min--
-                        _minLive.postValue(min)
+            Log.e("YYYYYYYY", count1.toString())
+            println(paused1)
+            if (!paused1) {
+                if (count1!! <= 0) {
+                    count1 = 59
+                    if (min1 > 0) {
+                        min1--
+                        _minLive1.postValue(min1)
                     }
-                    _countLive.postValue(count)
+                    _countLive1.postValue(count1)
                 } else {
-                    count = count!! - 1  // decrement count by 1
-                    _countLive.postValue(count)
-                    Log.e("Count > 0", count.toString())
+                    count1 = count1!! - 1
+                    _countLive1.postValue(count1)
                 }
             }
         }, 0, 1000)
     }
 
-    fun pause(){
-        paused = true;
+    fun timerCounter2() {
+        Timer().scheduleAtFixedRate(timerTask {
+            Log.e("YYYYYYYY", count2.toString())
+            println(paused2)
+            if (!paused2) {
+                if (count2!! <= 0) {
+                    count2 = 59
+                    if (min2 > 0) {
+                        min2--
+                        _minLive2.postValue(min2)
+                    }
+                    _countLive2.postValue(count2)
+                } else {
+                    count2 = count2!! - 1
+                    _countLive2.postValue(count2)
+                }
+            }
+        }, 0, 1000)
     }
 
-    fun notpause(){
-        paused = false;
+    fun pause1(){
+        paused1 = true
+        paused2 = false
+    }
+
+    fun pause2(){
+        paused1 = false
+        paused2 = true
+    }
+
+    fun pause() {
+        paused1 = true
+        paused2 = true
+        paused = true
+    }
+
+    fun play() {
+        paused = false
+        if (player == 1) paused1 = true
+        else paused2 = true
     }
 
     fun setTheme(newTheme: String) {

@@ -37,7 +37,8 @@ class Home : Fragment() {
         play.setOnClickListener{
             view?.findNavController()?.navigate(R.id.action_home2_to_timer)
 
-            cvm.count = timeSpinner.selectedItemPosition
+            cvm.count1 = timeSpinner.selectedItemPosition
+            cvm.count2 = timeSpinner.selectedItemPosition
             cvm.setTheme(themeSpinner.selectedItem.toString())
         }
 

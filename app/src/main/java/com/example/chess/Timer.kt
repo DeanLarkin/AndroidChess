@@ -69,18 +69,18 @@ class Timer : Fragment() {
         var isPaused = false
 
 // Set up the observer for countLive inside onCreateView or onViewCreated
-        cvm.countLive.observe(viewLifecycleOwner, Observer { count ->
+        cvm.countLive1.observe(viewLifecycleOwner, Observer { count ->
             // Check if the pause button is clicked
             if (isPaused) {
-                if (count >= 0 && cvm.min >= 0) {
-                    if (count < 10 && cvm.min < 10) {
-                        player1Timer?.text = "0${cvm.min}:0${count}"
-                    } else if (count >= 10 && cvm.min < 10) {
-                        player1Timer?.text = "0${cvm.min}:${count}"
-                    } else if (count < 10 && cvm.min >= 10) {
-                        player1Timer?.text = "${cvm.min}:0${count}"
+                if (count >= 0 && cvm.min1 >= 0) {
+                    if (count < 10 && cvm.min1 < 10) {
+                        player1Timer?.text = "0${cvm.min1}:0${count}"
+                    } else if (count >= 10 && cvm.min1 < 10) {
+                        player1Timer?.text = "0${cvm.min1}:${count}"
+                    } else if (count < 10 && cvm.min1 >= 10) {
+                        player1Timer?.text = "${cvm.min1}:0${count}"
                     } else {
-                        player1Timer?.text = "${cvm.min}:${count}"
+                        player1Timer?.text = "${cvm.min1}:${count}"
                     }
                 } else {
                     // countdown finished, do something
@@ -89,18 +89,58 @@ class Timer : Fragment() {
             }
         })
 
+
+        cvm.countLive2.observe(viewLifecycleOwner, Observer { count ->
+            // Check if the pause button is clicked
+            if (isPaused) {
+                if (count >= 0 && cvm.min2 >= 0) {
+                    if (count < 10 && cvm.min2 < 10) {
+                        player2Timer?.text = "0${cvm.min2}:0${count}"
+                    } else if (count >= 10 && cvm.min2 < 10) {
+                        player2Timer?.text = "0${cvm.min2}:${count}"
+                    } else if (count < 10 && cvm.min2 >= 10) {
+                        player2Timer?.text = "${cvm.min2}:0${count}"
+                    } else {
+                        player2Timer?.text = "${cvm.min2}:${count}"
+                    }
+                } else {
+                    // countdown finished, do something
+                    player2Timer?.text = "00:00"
+                }
+            }
+        })
+
+        if (cvm.player == 1) {
+            buttonBottom.setOnClickListener{
+                cvm.player = 2
+                cvm.pause1()
+            }
+        }
+        else {
+            buttonTop.setOnClickListener{
+                cvm.player = 1
+                cvm.pause2()
+            }
+        }
+
 // Set up the click listener for the pause button
         pause.setOnClickListener{
-            // Toggle the isPaused flag between true and false
-            cvm.timerCounter()
+
+            cvm.timerCounter1()
+            cvm.timerCounter2()
 
             isPaused = !isPaused
+
             // Update the text of the pause button based on the current state of isPaused
             pause.text = if (isPaused) "Pause"  else "Play"
-            if (isPaused)
+            if (isPaused) {
                 cvm.post("Paused timer")
-            else
+                cvm.pause()
+            }
+            else {
                 cvm.post("Resumed timer")
+                cvm.play()
+            }
 
             // Update the countLive value to trigger the observer
            // cvm.countLive.value = cvm.countLive.value
@@ -145,8 +185,8 @@ class Timer : Fragment() {
             buttonTop.setBackgroundColor(Color.rgb(69,0,132))
             buttonBottom.setBackgroundColor(Color.rgb(203,182,119))
 
-            player1Timer.setBackgroundColor(Color.rgb(69,0,132))
-            player2Timer.setBackgroundColor(Color.rgb(203,182,119))
+            player1Move.setTextColor(Color.rgb(69,0,132))
+            player2Move.setTextColor(Color.rgb(203,182,119))
 
             player1Timer.setTextColor(Color.rgb(69,0,132))
             player2Timer.setTextColor(Color.rgb(203,182,119))
@@ -157,8 +197,8 @@ class Timer : Fragment() {
             buttonTop.setBackgroundColor(Color.rgb(30,98,56))
             buttonBottom.setBackgroundColor(Color.rgb(226,168,43))
 
-            player1Timer.setBackgroundColor(Color.rgb(30,98,56))
-            player2Timer.setBackgroundColor(Color.rgb(226,168,43))
+            player1Move.setTextColor(Color.rgb(30,98,56))
+            player2Move.setTextColor(Color.rgb(226,168,43))
 
             player1Timer.setTextColor(Color.rgb(30,98,56))
             player2Timer.setTextColor(Color.rgb(226,168,43))
