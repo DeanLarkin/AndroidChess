@@ -31,11 +31,11 @@ class MoveLayout : Fragment() {
 
         binding.submitButton.setOnClickListener{
 
-            pieceName = binding.piece.selectedItemId.toString()
-            positionLetter = binding.letter.selectedItemId.toString()
-            positionNumber = binding.number.selectedItemId.toString()
+            pieceName = binding.piece.selectedItem.toString()
+            positionLetter = binding.letter.selectedItem.toString()
+            positionNumber = binding.number.selectedItem.toString()
             if (binding.taken.isChecked){
-                moveString = pieceName + "x" + positionLetter + positionNumber
+                moveString = pieceName + " "+ "x" +  positionLetter + positionNumber
             } else {
                 moveString = pieceName + positionLetter + positionNumber
             }

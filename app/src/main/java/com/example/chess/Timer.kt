@@ -12,7 +12,12 @@ import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import androidx.work.Data
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.example.chess.databinding.FragmentTimerBinding
+import java.util.*
 
 class Timer : Fragment() {
 
@@ -56,6 +61,7 @@ class Timer : Fragment() {
 
 
         settings.setOnClickListener {
+            cvm.post("Navigated to settings fragment")
             view?.findNavController()?.navigate(R.id.action_timer_to_home2)
         }
 
@@ -86,15 +92,21 @@ class Timer : Fragment() {
 // Set up the click listener for the pause button
         pause.setOnClickListener{
             // Toggle the isPaused flag between true and false
-            cvm.post("Pause/play")
+
             isPaused = !isPaused
             // Update the text of the pause button based on the current state of isPaused
-            pause.text = if (isPaused) "Pause" else "Play"
+            pause.text = if (isPaused) "Pause"  else "Play"
+            if (isPaused)
+                cvm.post("Paused timer")
+            else
+                cvm.post("Resumed timer")
+
             // Update the countLive value to trigger the observer
            // cvm.countLive.value = cvm.countLive.value
         }
 
         trackMove.setOnClickListener {
+            cvm.post("Navigated to Tracking move fragment")
 
             view?.findNavController()?.navigate(R.id.action_timer_to_moveLayout)
         }
