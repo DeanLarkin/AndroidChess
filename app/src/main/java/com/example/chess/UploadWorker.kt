@@ -22,7 +22,7 @@ class UploadWorker(appContext: Context, workerParams: WorkerParameters) :
         json.accumulate("date", inputData.getString("date"))
         json.accumulate("userID", inputData.getString("userID"))
         json.accumulate("event", inputData.getString("event"))
-        //  Log.d(MainActivity.TAG, "params:" + json.toString() + " url " + MainActivity.URL)
+         // Log.d(MainActivity.TAG, "params:" + json.toString() + " url " + MainActivity.URL)
         return uploadLog(json, MainActivity.URL)
     }
 
