@@ -1,5 +1,6 @@
 package com.example.chess
 
+import android.graphics.Color
 import android.media.Image
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -25,6 +26,9 @@ class Timer : Fragment() {
     private lateinit var player1Move:TextView
     private lateinit var player2Move:TextView
 
+    private lateinit var buttonTop: Button
+    private lateinit var buttonBottom: Button
+
     private lateinit var pause: Button
     private lateinit var settings:Button
     private lateinit var trackMove:Button
@@ -45,6 +49,9 @@ class Timer : Fragment() {
         player1Timer = binding.timerBottom
         player2Timer = binding.timerTop
 
+        buttonTop = binding.topButton
+        buttonBottom = binding.bottomButton
+
         player1Move = binding.moveCountBottom
         player2Move = binding.moveCountTop
 
@@ -53,7 +60,7 @@ class Timer : Fragment() {
         settings = binding.settingButton
         trackMove = binding.moveButton
 
-
+        createTheme()
 
         settings.setOnClickListener {
             view?.findNavController()?.navigate(R.id.action_timer_to_home2)
@@ -94,16 +101,72 @@ class Timer : Fragment() {
 //            })
 
         }
+
         trackMove.setOnClickListener {
 
             view?.findNavController()?.navigate(R.id.action_timer_to_moveLayout)
         }
 
-
-
-
         // Inflate the layout for this fragment
         return binding.root
+    }
+
+    fun createTheme() {
+
+        if (cvm.getTheme().equals("Hokie")) {
+            buttonTop.setBackgroundColor(Color.rgb(99,0,49))
+            buttonBottom.setBackgroundColor(Color.rgb(207,69,32))
+
+            player1Move.setTextColor(Color.rgb(99,0,49))
+            player2Move.setTextColor(Color.rgb(207,69,32))
+
+            player1Timer.setTextColor(Color.rgb(99,0,49))
+            player2Timer.setTextColor(Color.rgb(207,69,32))
+        }
+        else if (cvm.getTheme().equals("Cavalier")) {
+
+            buttonTop.setBackgroundColor(Color.rgb(229,114,0))
+            buttonBottom.setBackgroundColor(Color.rgb(35,45,75))
+
+            player1Move.setTextColor(Color.rgb(229,114,0))
+            player2Move.setTextColor(Color.rgb(35,45,75))
+
+            player1Timer.setTextColor(Color.rgb(229,114,0))
+            player2Timer.setTextColor(Color.rgb(35,45,75))
+
+        }
+        else if (cvm.getTheme().equals("Duke Dog")) {
+
+            buttonTop.setBackgroundColor(Color.rgb(69,0,132))
+            buttonBottom.setBackgroundColor(Color.rgb(203,182,119))
+
+            player1Timer.setBackgroundColor(Color.rgb(69,0,132))
+            player2Timer.setBackgroundColor(Color.rgb(203,182,119))
+
+            player1Timer.setTextColor(Color.rgb(69,0,132))
+            player2Timer.setTextColor(Color.rgb(203,182,119))
+
+        }
+        else if (cvm.getTheme().equals("Patriots")) {
+
+            buttonTop.setBackgroundColor(Color.rgb(30,98,56))
+            buttonBottom.setBackgroundColor(Color.rgb(226,168,43))
+
+            player1Timer.setBackgroundColor(Color.rgb(30,98,56))
+            player2Timer.setBackgroundColor(Color.rgb(226,168,43))
+
+            player1Timer.setTextColor(Color.rgb(30,98,56))
+            player2Timer.setTextColor(Color.rgb(226,168,43))
+        }
+        else {
+            player1Timer.setBackgroundColor(Color.WHITE)
+            player2Timer.setBackgroundColor(Color.WHITE)
+            player1Timer.setTextColor(Color.BLACK)
+            player2Timer.setTextColor(Color.BLACK)
+            buttonTop.setBackgroundColor(Color.GRAY)
+            buttonBottom.setBackgroundColor(Color.GRAY)
+        }
+
     }
 
 }
