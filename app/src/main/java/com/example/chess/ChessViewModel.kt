@@ -35,8 +35,12 @@ class ChessViewModel : ViewModel() {
     var minLive2: LiveData<Int> = _minLive2
     private val _countLive1 = MutableLiveData<Int>(0)
     private val _countLive2 = MutableLiveData<Int>(0)
+    private val _timerData1 = MutableLiveData<Long>(60000)
+    private val _timerData2 = MutableLiveData<Long>(60000)
     var countLive1: LiveData<Int> = _countLive1
     var countLive2: LiveData<Int> = _countLive2
+    var timerData1: LiveData<Long> = _timerData1
+    var timerData2: LiveData<Long> = _timerData2
 
     fun setTime(newTime: Int) {
         timeSetting = newTime
@@ -44,6 +48,22 @@ class ChessViewModel : ViewModel() {
 
     fun getTime(): Int? {
         return timeSetting
+    }
+
+    fun setTimerData1(timerData: Long){
+        _timerData1.value = timerData
+    }
+
+    fun getTimerData1(): Long?{
+        return timerData1?.value
+    }
+
+    fun setTimerData2(timerData: Long){
+        _timerData2.value = timerData
+    }
+
+    fun getTimerData2(): Long?{
+        return timerData2?.value
     }
 
     fun post(text: String){

@@ -35,6 +35,26 @@ class Home : Fragment() {
         themeSpinner = binding.themeSpinner
 
         play.setOnClickListener{
+            when (binding.timeSpinner.selectedItem){
+                "1 Minute" -> {cvm.setTimerData1(60000)
+                    cvm.setTimerData2(60000)}
+                "3 Minutes" -> {
+                    cvm.setTimerData1(180000)
+                    cvm.setTimerData2(180000)
+                }
+                "5 Minutes" -> {
+                    cvm.setTimerData1(300000)
+                    cvm.setTimerData2(300000)
+                }
+                "10 Minutes" -> {
+                    cvm.setTimerData1(600000)
+                    cvm.setTimerData2(600000)
+                }
+                "30 Minutes" -> {
+                    cvm.setTimerData1(1800000)
+                    cvm.setTimerData2(1800000)
+                }
+            }
             view?.findNavController()?.navigate(R.id.action_home2_to_timer)
 
             cvm.count1 = timeSpinner.selectedItemPosition

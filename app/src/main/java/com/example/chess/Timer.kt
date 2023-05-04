@@ -1,13 +1,16 @@
 package com.example.chess
 
 import android.graphics.Color
+import android.icu.text.DecimalFormat
+import android.icu.text.NumberFormat
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
@@ -26,6 +29,8 @@ class Timer : Fragment() {
 
     private lateinit var buttonTop: Button
     private lateinit var buttonBottom: Button
+    private var countDownTimer1: CountDownTimer? = null
+    private var countDownTimer2: CountDownTimer? = null
 
     private lateinit var pause: Button
     private lateinit var settings:Button
@@ -58,6 +63,60 @@ class Timer : Fragment() {
         settings = binding.settingButton
         trackMove = binding.moveButton
 
+        binding.timerBottom.setOnClickListener{
+            if (countDownTimer1 == null) run {
+                countDownTimer1 = object : CountDownTimer(cvm.getTimerData1()!!, 1000) {
+                    override fun onTick(p0: Long) {
+                        val f: NumberFormat = DecimalFormat("00")
+                        val min: Long = p0 / 60000 % 60
+                        val sec: Long = p0 / 1000 % 60
+                        binding.timerBottom.setText(
+                            (f.format(min)).toString() + ":" + f.format(
+                                sec
+                            )
+                        )
+                        cvm.setTimerData1(p0)
+                    }
+
+                    override fun onFinish() {
+                        binding.timerBottom.setText("00:00:00");
+                    }
+
+                }.start()
+            }
+            else{
+                countDownTimer1!!.cancel()
+                countDownTimer1 = null
+            }
+        }
+
+        binding.timerTop.setOnClickListener{
+            if (countDownTimer2 == null) run {
+                countDownTimer2 = object : CountDownTimer(cvm.getTimerData2()!!, 1000) {
+                    override fun onTick(p0: Long) {
+                        val f: NumberFormat = DecimalFormat("00")
+                        val min: Long = p0 / 60000 % 60
+                        val sec: Long = p0 / 1000 % 60
+                        binding.timerTop.setText(
+                            (f.format(min)).toString() + ":" + f.format(
+                                sec
+                            )
+                        )
+                        cvm.setTimerData2(p0)
+                    }
+
+                    override fun onFinish() {
+                        binding.timerTop.setText("00:00:00");
+                    }
+
+                }.start()
+            }
+            else{
+                countDownTimer2!!.cancel()
+                countDownTimer2 = null
+            }
+        }
+
         createTheme()
 
         settings.setOnClickListener {
@@ -65,50 +124,50 @@ class Timer : Fragment() {
             view?.findNavController()?.navigate(R.id.action_timer_to_home2)
         }
 
-        // Initialize a flag to keep track of whether the pause button is clicked
-        var isPaused = false
+//        // Initialize a flag to keep track of whether the pause button is clicked
+          var isPaused = false
+//
+//// Set up the observer for countLive inside onCreateView or onViewCreated
+//        cvm.countLive1.observe(viewLifecycleOwner, Observer { count ->
+//            // Check if the pause button is clicked
+//            if (isPaused) {
+//                if (count >= 0 && cvm.min1 >= 0) {
+//                    if (count < 10 && cvm.min1 < 10) {
+//                        player1Timer?.text = "0${cvm.min1}:0${count}"
+//                    } else if (count >= 10 && cvm.min1 < 10) {
+//                        player1Timer?.text = "0${cvm.min1}:${count}"
+//                    } else if (count < 10 && cvm.min1 >= 10) {
+//                        player1Timer?.text = "${cvm.min1}:0${count}"
+//                    } else {
+//                        player1Timer?.text = "${cvm.min1}:${count}"
+//                    }
+//                } else {
+//                    // countdown finished, do something
+//                    player1Timer?.text = "00:00"
+//                }
+//            }
+//        })
 
-// Set up the observer for countLive inside onCreateView or onViewCreated
-        cvm.countLive1.observe(viewLifecycleOwner, Observer { count ->
-            // Check if the pause button is clicked
-            if (isPaused) {
-                if (count >= 0 && cvm.min1 >= 0) {
-                    if (count < 10 && cvm.min1 < 10) {
-                        player1Timer?.text = "0${cvm.min1}:0${count}"
-                    } else if (count >= 10 && cvm.min1 < 10) {
-                        player1Timer?.text = "0${cvm.min1}:${count}"
-                    } else if (count < 10 && cvm.min1 >= 10) {
-                        player1Timer?.text = "${cvm.min1}:0${count}"
-                    } else {
-                        player1Timer?.text = "${cvm.min1}:${count}"
-                    }
-                } else {
-                    // countdown finished, do something
-                    player1Timer?.text = "00:00"
-                }
-            }
-        })
 
-
-        cvm.countLive2.observe(viewLifecycleOwner, Observer { count ->
-            // Check if the pause button is clicked
-            if (isPaused) {
-                if (count >= 0 && cvm.min2 >= 0) {
-                    if (count < 10 && cvm.min2 < 10) {
-                        player2Timer?.text = "0${cvm.min2}:0${count}"
-                    } else if (count >= 10 && cvm.min2 < 10) {
-                        player2Timer?.text = "0${cvm.min2}:${count}"
-                    } else if (count < 10 && cvm.min2 >= 10) {
-                        player2Timer?.text = "${cvm.min2}:0${count}"
-                    } else {
-                        player2Timer?.text = "${cvm.min2}:${count}"
-                    }
-                } else {
-                    // countdown finished, do something
-                    player2Timer?.text = "00:00"
-                }
-            }
-        })
+//        cvm.countLive2.observe(viewLifecycleOwner, Observer { count ->
+//            // Check if the pause button is clicked
+//            if (isPaused) {
+//                if (count >= 0 && cvm.min2 >= 0) {
+//                    if (count < 10 && cvm.min2 < 10) {
+//                        player2Timer?.text = "0${cvm.min2}:0${count}"
+//                    } else if (count >= 10 && cvm.min2 < 10) {
+//                        player2Timer?.text = "0${cvm.min2}:${count}"
+//                    } else if (count < 10 && cvm.min2 >= 10) {
+//                        player2Timer?.text = "${cvm.min2}:0${count}"
+//                    } else {
+//                        player2Timer?.text = "${cvm.min2}:${count}"
+//                    }
+//                } else {
+//                    // countdown finished, do something
+//                    player2Timer?.text = "00:00"
+//                }
+//            }
+//        })
 
         if (cvm.player == 1) {
             buttonBottom.setOnClickListener{
