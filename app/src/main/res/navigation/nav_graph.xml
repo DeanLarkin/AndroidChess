@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_timer_to_moveLayout"
             app:destination="@id/moveLayout" />
+        <action
+            android:id="@+id/action_timer_to_moveDisplayFragment"
+            app:destination="@id/moveDisplayFragment" />
     </fragment>
     <fragment
         android:id="@+id/home2"
@@ -33,6 +36,14 @@
         tools:layout="@layout/fragment_move_layout" >
         <action
             android:id="@+id/action_moveLayout_to_timer"
+            app:destination="@id/timer" />
+    </fragment>
+    <fragment
+        android:id="@+id/moveDisplayFragment"
+        android:name="com.example.chess.MoveDisplayFragment"
+        android:label="MoveDisplayFragment" >
+        <action
+            android:id="@+id/action_moveDisplayFragment_to_timer"
             app:destination="@id/timer" />
     </fragment>
 </navigation>
